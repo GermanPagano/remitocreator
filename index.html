@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar Remito</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Agregar CDN de jsPDF y jsPDF-autotable -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        .step {
+            display: none;
+        }
+        .step.active {
+            display: block;
+        }
+        .button {
+            margin-top: 20px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Agregar el logo en la parte superior -->
+        <div class="logo">
+            <img src="logo aeroend.png" alt="Logo de la Empresa" width="200">
+        </div>
+
+        <!-- Step 1: Datos del destinatario -->
+        <div class="step active" id="step1">
+            <h2>Datos del Destinatario</h2>
+            <label>Razón Social:</label>
+            <input type="text" id="razonSocial" required><br>
+
+            <label>Domicilio:</label>
+            <input type="text" id="direccion" required><br>
+
+            <label>Localidad:</label>
+            <input type="text" id="localidad" required><br>
+
+            <label>CUIT:</label>
+            <input type="text" id="cuitDestinatario" required><br>
+
+            <label>Teléfono:</label>
+            <input type="text" id="telefono" required><br>
+
+            <label>C.P.:</label>
+            <input type="text" id="cp" required><br>
+
+            <label>Provincia:</label>
+            <input type="text" id="provincia" required><br>
+
+            <label>Otros Datos:</label>
+            <input type="text" id="otrosDatos"><br>
+
+            <button class="button" id="nextToStep2">Continuar</button>
+        </div>
+
+        <!-- Step 2: Detalles del Artículo -->
+        <div class="step" id="step2">
+            <h2>Detalles del Artículo</h2>
+            <table id="articulosTable">
+                <thead>
+                    <tr>
+                        <th>Descripción</th>
+                        <th>N° Parte</th>
+                        <th>N° Serie</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="descripcion" required></td>
+                        <td><input type="text" id="nParte" required></td>
+                        <td><input type="text" id="nSerie" required></td>
+                        <td><input type="number" id="cantidad" required></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button class="button" id="prevToStep1">Atrás</button>
+            <button class="button" id="nextToStep3">Continuar</button>
+        </div>
+
+        <!-- Step 3: Datos del Transportista -->
+        <div class="step" id="step3">
+            <h2>Datos del Transportista</h2>
+            <label>Nombre del Transportista:</label>
+            <input type="text" id="transportista" required><br>
+
+            <label>Datos del Vehículo:</label>
+            <input type="text" id="vehiculo" required><br>
+
+            <button class="button" id="prevToStep2">Atrás</button>
+            <button class="button" id="generatePdf">Generar PDF</button>
+        </div>
+    </div>
+
+    <script>
+        // Manejar la navegación entre pasos
+        $(document).ready(function() {
+            // Al hacer clic en "Continuar", cambiar a la segunda sección
+            $('#nextToStep2').click(function() {
+                $('#step1').removeClass('active');
+                $('#step2').addClass('active');
+            });
+
+            // Al hacer clic en "Atrás" de Step 2, volver a Step 1
+            $('#prevToStep1').click(function() {
+                $('#step2').removeClass('active');
+                $('#step1').addClass('active');
+            });
+
+            // Al hacer clic en "Continuar" en Step 2, ir a Step 3
+            $('#nextToStep3').click(function() {
+                $('#step2').removeClass('active');
+                $('#step3').addClass('active');
+            });
+
+            // Al hacer clic en "Atrás" de Step 3, volver a Step 2
+            $('#prevToStep2').click(function() {
+                $('#step3').removeClass('active');
+                $('#step2').addClass('active');
+            });
+        });
+    </script>
+        <script src="./main.js"></script>
+</body>
+</html>
+
