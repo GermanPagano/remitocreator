@@ -124,27 +124,46 @@ button {
         font-size: 1rem;
     }
 
-    table, th, td {
-        font-size: 0.8rem;
-        padding: 4px;
-    }
-
-    /* Cambiar la visualización de la tabla en móviles para que sea más legible */
-    table, thead, tbody, th, td, tr {
-        display: block;
+    table {
         width: 100%;
     }
 
-    th, td {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        border: none;
-        border-bottom: 1px solid black;
+    /* Cambiar la visualización de la tabla en móviles para que cada fila se vea como una tarjeta */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    /* Ajustamos las celdas para que se vean como etiquetas en la vista móvil */
+    tr {
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ddd;
     }
 
     th {
+        display: none; /* Ocultamos los encabezados de la tabla en móviles */
+    }
+
+    td {
+        display: block;
+        text-align: right;
+        padding: 10px;
+        position: relative;
+        font-size: 0.9rem;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Añadimos un pseudo-elemento para simular la etiqueta (encabezado) en cada celda */
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
         font-weight: bold;
-        background-color: #f9f9f9;
+        text-align: left;
+    }
+
+    td:last-child {
+        border-bottom: 0;
     }
 }
+
