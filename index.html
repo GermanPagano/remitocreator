@@ -4,40 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generar Remito</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- Agregar CDN de jsPDF y jsPDF-autotable -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <style>
-        .step {
-            display: none;
-        }
-        .step.active {
-            display: block;
-        }
-        .button {
-            margin-top: 20px;
-        }
-        .logo {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-    </style>
+    <!-- Agregar la hoja de estilos -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Agregar jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Agregar jsPDF y jsPDF-autotable desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -89,14 +65,41 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Filas iniciales -->
                     <tr>
-                        <td><input type="text" id="descripcion" required></td>
-                        <td><input type="text" id="nParte" required></td>
-                        <td><input type="text" id="nSerie" required></td>
-                        <td><input type="number" id="cantidad" required></td>
+                        <td><input type="text" required></td>
+                        <td><input type="text" required></td>
+                        <td><input type="text" required></td>
+                        <td><input type="number" required></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" required></td>
+                        <td><input type="text" required></td>
+                        <td><input type="text" required></td>
+                        <td><input type="number" required></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" required></td>
+                        <td><input type="text" required></td>
+                        <td><input type="text" required></td>
+                        <td><input type="number" required></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" required></td>
+                        <td><input type="text" required></td>
+                        <td><input type="text" required></td>
+                        <td><input type="number" required></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" required></td>
+                        <td><input type="text" required></td>
+                        <td><input type="text" required></td>
+                        <td><input type="number" required></td>
                     </tr>
                 </tbody>
             </table>
+
+            <button class="button" id="addRowButton">Añadir Línea</button><br>
 
             <button class="button" id="prevToStep1">Atrás</button>
             <button class="button" id="nextToStep3">Continuar</button>
@@ -110,41 +113,24 @@
 
             <label>Datos del Vehículo:</label>
             <input type="text" id="vehiculo" required><br>
+            <!-- Agregar estos nuevos campos en tu formulario de transporte -->
+<label>Lugar de Entrega:</label>
+<input type="text" id="lugarEntrega" required><br>
+
+<label>Hora de Entrega:</label>
+<input type="text" id="horaEntrega" required><br>
+
+<label>Observaciones:</label>
+<textarea id="observaciones" rows="4" cols="50"></textarea><br>
+
 
             <button class="button" id="prevToStep2">Atrás</button>
             <button class="button" id="generatePdf">Generar PDF</button>
         </div>
     </div>
 
-    <script>
-        // Manejar la navegación entre pasos
-        $(document).ready(function() {
-            // Al hacer clic en "Continuar", cambiar a la segunda sección
-            $('#nextToStep2').click(function() {
-                $('#step1').removeClass('active');
-                $('#step2').addClass('active');
-            });
-
-            // Al hacer clic en "Atrás" de Step 2, volver a Step 1
-            $('#prevToStep1').click(function() {
-                $('#step2').removeClass('active');
-                $('#step1').addClass('active');
-            });
-
-            // Al hacer clic en "Continuar" en Step 2, ir a Step 3
-            $('#nextToStep3').click(function() {
-                $('#step2').removeClass('active');
-                $('#step3').addClass('active');
-            });
-
-            // Al hacer clic en "Atrás" de Step 3, volver a Step 2
-            $('#prevToStep2').click(function() {
-                $('#step3').removeClass('active');
-                $('#step2').addClass('active');
-            });
-        });
-    </script>
-        <script src="./main.js"></script>
+    <!-- Archivo main.js -->
+    <script src="main.js"></script>
 </body>
 </html>
 
